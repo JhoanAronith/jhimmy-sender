@@ -33,9 +33,9 @@ if archivo:
             monto = str(fila.get('OFERTA_LD', '0'))
             
             mensaje = (f"¡¡¡Buen Dia!!! {nombre}\n"
-                       f"Trate de contactarlo sin éxito, comunicarle q cuenta con una campaña "
-                       f"pre-aprobada de {monto}.\n\n"
-                       f"Más info: 972107359")
+                       f"Trate de contactarlo sin éxito, comunicarle que usted cuenta con una campaña "
+                       f"pre-aprobada de {monto}, que puede retirar solo con su DNI.\n\n"
+                       f"Más información: 972107359")
             
             url_wa = f"https://wa.me/51{tel}?text={urllib.parse.quote(mensaje)}"
 
