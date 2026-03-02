@@ -35,7 +35,7 @@ if archivo:
             mensaje = (f"¡¡¡Buen Dia!!! {nombre}\n"
                        f"Trate de contactarlo sin éxito, comunicarle que usted cuenta con una campaña "
                        f"pre-aprobada de {monto}, que puede retirar solo con su DNI.\n\n"
-                       f"Más información: 972107359")
+                       f"Si desea más información comunicarse con: 972107359")
             
             url_wa = f"https://wa.me/51{tel}?text={urllib.parse.quote(mensaje)}"
 
