@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import urllib.parse
-import random
 
 st.set_page_config(page_title="WhatsApp Bulk Sender", layout="wide")
 
@@ -42,12 +41,15 @@ PLANTILLAS = [
     ),
 ]
 
+# Inicializar session state
+if "enviados" not in st.session_state:
+    st.session_state.enviados = set()
+
 if archivo:
     try:
         df = pd.read_excel(archivo) if archivo.name.endswith('xlsx') else pd.read_csv(archivo)
         df = df.dropna(subset=['T1', 'NOMBRE'])
 
-        # Convertir monto a numérico y ordenar de mayor a menor
         df['OFERTA_LD'] = pd.to_numeric(df['OFERTA_LD'], errors='coerce').fillna(0)
         df = df.sort_values('OFERTA_LD', ascending=False).reset_index(drop=True)
 
@@ -60,9 +62,17 @@ if archivo:
         if busqueda:
             df = df[df['NOMBRE'].str.contains(busqueda, na=False)]
 
+        # Filtrar los ya enviados
+        df = df[~df.index.isin(st.session_state.enviados)]
+
         df_mostrar = df.head(limite)
 
-        st.caption(f"Mostrando {len(df_mostrar)} de {len(df)} registros encontrados.")
+        col_info, col_reset = st.columns([6, 1])
+        col_info.caption(f"Mostrando {len(df_mostrar)} de {len(df)} registros pendientes. ✅ Enviados: {len(st.session_state.enviados)}")
+        if col_reset.button("🔄 Resetear"):
+            st.session_state.enviados = set()
+            st.rerun()
+
         st.divider()
 
         for i, fila in df_mostrar.iterrows():
@@ -70,16 +80,18 @@ if archivo:
             tel = str(fila['T1']).split('.')[0]
             monto = str(int(fila['OFERTA_LD']))
 
-            # Elegir plantilla aleatoria usando el índice como semilla para consistencia
             plantilla = PLANTILLAS[i % len(PLANTILLAS)]
             mensaje = plantilla(nombre, monto)
-
             url_wa = f"https://wa.me/51{tel}?text={urllib.parse.quote(mensaje)}"
 
             c1, c2, c3 = st.columns([4, 2, 1])
             c1.write(f"**{nombre}** ({tel}) — 💰 S/ {monto}")
-            c2.link_button("Enviar WhatsApp", url_wa, use_container_width=True)
-            c3.checkbox("OK", key=f"check_{i}")
+            c2.link_button("Enviar WhatsApp ✉️", url_wa, use_container_width=True)
+
+            # Al hacer clic en OK → marcar como enviado y rerenderizar
+            if c3.button("✅ OK", key=f"ok_{i}"):
+                st.session_state.enviados.add(i)
+                st.rerun()
 
     except Exception as e:
         st.error(f"Error: {e}")
