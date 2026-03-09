@@ -51,7 +51,7 @@ if archivo:
         df = df.dropna(subset=['T1', 'NOMBRE'])
 
         df['OFERTA_LD'] = pd.to_numeric(df['OFERTA_LD'], errors='coerce').fillna(0)
-        df = df.sort_values('OFERTA_LD', ascending=False).reset_index(drop=True)
+        df = df.sort_values('OFERTA_LD', ascending=True).reset_index(drop=True)
 
         col_f1, col_f2 = st.columns(2)
         with col_f1:
