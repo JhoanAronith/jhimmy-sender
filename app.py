@@ -7,7 +7,6 @@ st.set_page_config(page_title="JhimmySender Pro", layout="wide")
 
 st.title("📲 JhimmySender")
 
-# --- PLANTILLAS ANTI-SPAM ---
 PLANTILLAS = [
     lambda n, m: f"¡¡¡Buen Dia!!! {n}\nTrate de contactarlo sin éxito, comunicarle que usted cuenta con una campaña pre-aprobada de S/ {m}, que puede retirar solo con su DNI.\n\nSi desea más información comunicarse con: 972107359",
     lambda n, m: f"¡Buenos Días! {n}\nMe comunico para informarle que tiene disponible una oferta especial pre-aprobada de S/ {m}. Solo necesita presentar su DNI para acceder.\n\nConsultas al: 972107359",
@@ -16,7 +15,6 @@ PLANTILLAS = [
     lambda n, m: f"¡Muy buenos días, {n}!\nQuería informarle que usted posee una campaña vigente pre-aprobada de S/ {m}. Puede hacer efectivo el retiro presentando su DNI.\n\nContáctenos al: 972107359"
 ]
 
-# --- INICIALIZAR SESSION STATE ---
 if "enviados" not in st.session_state:
     st.session_state.enviados = set()
 if "df_master" not in st.session_state:
@@ -37,7 +35,6 @@ if archivo:
 if st.session_state.df_master is not None:
     df = st.session_state.df_master.copy()
 
-    # --- CONTROLES DE ORDEN Y PAGINACIÓN ---
     col_ord, col_pag = st.columns([2, 2])
     
     with col_ord:
@@ -66,7 +63,6 @@ if st.session_state.df_master is not None:
 
     st.divider()
 
-    # --- RENDERIZADO DE FILAS ---
     inicio = (num_pagina - 1) * registros_por_pagina
     fin = inicio + registros_por_pagina
     df_pagina = df_pendientes.iloc[inicio:fin]
