@@ -80,7 +80,7 @@ if st.session_state.df_master is not None:
 
         c1, c2, c3 = st.columns([4, 2, 1])
 
-        c1.markdown(f"👤 **{nombre}** \n📞 {tel} | 💰 **S/ {monto}**")
+        c1.markdown(f"👤 **{nombre}** \n {tel} |  **S/ {monto}**")
         c2.link_button("Enviar Mensaje ✉️", url_wa, use_container_width=True)
 
         if c3.button("✅ OK", key=f"ok_{stable_id}", use_container_width=True):
