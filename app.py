@@ -8,11 +8,85 @@ st.set_page_config(page_title="JhimmySender Pro", layout="wide")
 st.title("📲 JhimmySender")
 
 PLANTILLAS = [
-    lambda n, m: f"¡¡¡Buen Dia!!! {n}\nTrate de contactarlo sin éxito, comunicarle que usted cuenta con una campaña pre-aprobada de S/ {m}, que puede retirar solo con su DNI.\n\nSi desea más información comunicarse con: 972107359",
-    lambda n, m: f"¡Buenos Días! {n}\nMe comunico para informarle que tiene disponible una oferta especial pre-aprobada de S/ {m}. Solo necesita presentar su DNI para acceder.\n\nConsultas al: 972107359",
-    lambda n, m: f"¡Hola {n}, buen día!\nIntenté contactarle anteriormente. Le comento que cuenta con un crédito pre-aprobado de S/ {m}, retirable únicamente con su DNI.\n\nMayor información: 972107359",
-    lambda n, m: f"Estimado/a {n}, ¡buenos días!\nNos comunicamos para avisarle que tiene una propuesta pre-aprobada por S/ {m}, disponible para retirar con solo su DNI.\n\nPara más detalles escríbanos al: 972107359",
-    lambda n, m: f"¡Muy buenos días, {n}!\nQuería informarle que usted posee una campaña vigente pre-aprobada de S/ {m}. Puede hacer efectivo el retiro presentando su DNI.\n\nContáctenos al: 972107359"
+    lambda n, m: f"""¡Hola! {n}
+✨ Este mes cuenta con un PRÉSTAMO DE LIBRE DISPONIBILIDAD con DESEMBOLSO INMEDIATO 💸
+
+💰 Monto aprobado: S/ {m}
+📆 Puede elegir plazos desde 12 hasta 72 meses
+✅ Solo necesita su DNI vigente
+🔁 Tiene opción de amortizar o cancelar anticipadamente (desde el 2do mes)
+
+🔥 SIN PROCESOS COMPLICADOS – RESPUESTA ÁGIL
+
+⚠️ Para atención directa y sin demoras, escríbame a: 972107359 (Asesor: JHIMMY MUÑOZ)
+
+💬 Le brindaré una atención rápida y personalizada
+
+✨ Aproveche esta oportunidad exclusiva con Santander Consumer ♨️""",
+
+    lambda n, m: f"""¡Buenos días! {n}
+✨ Tiene disponible un CRÉDITO DE LIBRE DISPONIBILIDAD con ENTREGA INMEDIATA 💸
+
+💰 Importe aprobado: S/ {m}
+📆 Plazos flexibles entre 12 y 72 meses
+✅ Único requisito: DNI vigente
+🔁 Posibilidad de pagos anticipados o cancelación desde el 2do mes
+
+🔥 PROCESO SIMPLE – RESPUESTA RÁPIDA
+
+⚠️ Para evitar esperas, comuníquese directamente al: 972107359 (Asesor: JHIMMY MUÑOZ)
+
+💬 Atención inmediata y personalizada para usted
+
+✨ No pierda esta oportunidad con Santander Consumer ♨️""",
+
+    lambda n, m: f"""¡Hola {n}!
+✨ Cuenta con una oferta de PRÉSTAMO PERSONAL con DESEMBOLSO INMEDIATO 💸
+
+💰 Monto disponible: S/ {m}
+📆 Financiamiento desde 12 hasta 72 meses
+✅ Solo debe presentar su DNI vigente
+🔁 Puede adelantar cuotas o cancelar el crédito desde el segundo mes
+
+🔥 SIN TRÁMITES ENGORROSOS – RESPUESTA INMEDIATA
+
+⚠️ Escríbame directamente al: 972107359 (Asesor: JHIMMY MUÑOZ) para una atención más rápida
+
+💬 Le atenderé de forma directa y personalizada
+
+✨ Beneficio exclusivo con Santander Consumer ♨️""",
+
+    lambda n, m: f"""Estimado/a {n}
+✨ Tiene acceso a un PRÉSTAMO DE LIBRE DISPONIBILIDAD con ENTREGA RÁPIDA 💸
+
+💰 Línea aprobada: S/ {m}
+📆 Puede escoger plazos de 12 a 72 meses
+✅ Requisito principal: DNI vigente
+🔁 Opción de amortizar o cancelar anticipadamente desde el 2do mes
+
+🔥 SIN COMPLICACIONES – ATENCIÓN EFICIENTE
+
+⚠️ Para atención directa, contácteme al: 972107359 (Asesor: JHIMMY MUÑOZ)
+
+💬 Recibirá asesoría personalizada al instante
+
+✨ Aproveche esta campaña exclusiva de Santander Consumer ♨️""",
+
+    lambda n, m: f"""¡Muy buen día, {n}!
+✨ Dispone de un CRÉDITO DE LIBRE DISPONIBILIDAD con DESEMBOLSO INMEDIATO 💸
+
+💰 Monto asignado: S/ {m}
+📆 Plazos adaptables entre 12 y 72 meses
+✅ Solo requiere DNI vigente
+🔁 Puede realizar pagos adelantados o cancelar desde el segundo mes
+
+🔥 PROCESO RÁPIDO Y SIN COMPLICACIONES
+
+⚠️ Para una atención más ágil, escríbame al: 972107359 (Asesor: JHIMMY MUÑOZ)
+
+💬 Atención directa y personalizada para usted
+
+✨ No deje pasar esta oportunidad con Santander Consumer ♨️"""
 ]
 
 if "enviados" not in st.session_state:
