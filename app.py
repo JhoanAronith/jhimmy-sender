@@ -16,7 +16,7 @@ def generar_link_whatsapp(numero, mensaje):
         safe='',
         encoding='utf-8'
     )
-    return f"https://wa.me/51{numero}?text={mensaje_codificado}"
+    return f"https://api.whatsapp.com/send/51{numero}?text={mensaje_codificado}"
 
 
 # =========================================================
