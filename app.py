@@ -7,26 +7,11 @@ st.set_page_config(page_title="JhimmySender Pro", layout="wide")
 
 st.title("📲 JhimmySender")
 
-# =========================================================
-# FUNCIÓN PARA CODIFICAR CORRECTAMENTE EMOJIS EN WA.ME
-# =========================================================
-def generar_link_whatsapp(numero, mensaje):
-    mensaje_codificado = urllib.parse.quote(
-        mensaje,
-        safe='',
-        encoding='utf-8'
-    )
-    return f"https://api.whatsapp.com/send/51{numero}?text={mensaje_codificado}"
-
-
-# =========================================================
-# PLANTILLAS
-# =========================================================
 PLANTILLAS = [
 
     lambda n, m: f"""¡Hola! {n}
 
-✅ Este mes cuenta con un PRESTAMO DE LIBRE DISPONIBILIDAD con DESEMBOLSO INMEDIATO
+✅ Este mes cuenta con un PRESTAMO DE LIBRE DISPONIBILIDAD con DESEMBOLSO INMEDIIATO
 
 💰 Monto aprobado: S/ {m}
 📅 Puede elegir plazos desde 12 hasta 72 meses
@@ -42,7 +27,6 @@ PLANTILLAS = [
 💬 Le brindaré una atención rápida y personalizada
 
 📌 Aproveche esta oportunidad exclusiva con Santander Consumer.""",
-
 
     lambda n, m: f"""¡Buenos días! {n}
 
@@ -63,7 +47,6 @@ PLANTILLAS = [
 
 📌 No pierda esta oportunidad con Santander Consumer.""",
 
-
     lambda n, m: f"""¡Hola {n}!
 
 ✅ Cuenta con una oferta de PRESTAMO PERSONAL con DESEMBOLSO INMEDIATO
@@ -83,7 +66,6 @@ PLANTILLAS = [
 
 📌 Beneficio exclusivo con Santander Consumer.""",
 
-
     lambda n, m: f"""Estimado/a {n}
 
 ✅ Tiene acceso a un PRESTAMO DE LIBRE DISPONIBILIDAD con ENTREGA RAPIDA
@@ -102,7 +84,6 @@ PLANTILLAS = [
 💬 Recibirá asesoría personalizada al instante
 
 📌 Aproveche esta campaña exclusiva de Santander Consumer.""",
-
 
     lambda n, m: f"""¡Muy buen día, {n}!
 
@@ -124,18 +105,12 @@ PLANTILLAS = [
 📌 No deje pasar esta oportunidad con Santander Consumer."""
 ]
 
-# =========================================================
-# SESSION STATE
-# =========================================================
 if "enviados" not in st.session_state:
     st.session_state.enviados = set()
 
 if "df_master" not in st.session_state:
     st.session_state.df_master = None
 
-# =========================================================
-# SUBIR ARCHIVO
-# =========================================================
 archivo = st.file_uploader("Sube tu Excel", type=["xlsx", "csv"])
 
 if archivo:
@@ -163,9 +138,6 @@ if archivo:
 
         st.session_state.df_master = df
 
-# =========================================================
-# MOSTRAR DATA
-# =========================================================
 if st.session_state.df_master is not None:
 
     df = st.session_state.df_master.copy()
@@ -187,9 +159,6 @@ if st.session_state.df_master is not None:
             ascending=ascendente
         ).reset_index(drop=True)
 
-    # =========================================================
-    # FILTRAR ENVIADOS
-    # =========================================================
     df_pendientes = df[
         ~df['_id'].isin(st.session_state.enviados)
     ].reset_index(drop=True)
@@ -220,9 +189,6 @@ if st.session_state.df_master is not None:
         f"Enviados hoy: {len(st.session_state.enviados)}"
     )
 
-    # =========================================================
-    # RESET
-    # =========================================================
     if st.button("🔄 Resetear lista de enviados"):
         st.session_state.enviados = set()
         st.rerun()
@@ -234,9 +200,6 @@ if st.session_state.df_master is not None:
 
     df_pagina = df_pendientes.iloc[inicio:fin]
 
-    # =========================================================
-    # LISTADO
-    # =========================================================
     for i, fila in df_pagina.iterrows():
 
         nombre = str(fila['NOMBRE']).strip()
@@ -251,10 +214,11 @@ if st.session_state.df_master is not None:
 
         mensaje = plantilla(nombre, monto)
 
-        # =====================================================
-        # LINK WHATSAPP CON UTF-8
-        # =====================================================
-        url_wa = generar_link_whatsapp(tel, mensaje)
+        url_wa = (
+            f"https://api.whatsapp.com/send"
+            f"?phone=51{tel}"
+            f"&text={urllib.parse.quote(mensaje, safe='', encoding='utf-8')}"
+        )
 
         c1, c2, c3 = st.columns([4, 2, 1])
 
@@ -277,15 +241,9 @@ if st.session_state.df_master is not None:
             st.session_state.enviados.add(stable_id)
             st.rerun()
 
-# =========================================================
-# SIN ARCHIVO
-# =========================================================
 else:
     st.warning("Por favor, sube un archivo para comenzar.")
 
-# =========================================================
-# BORRAR DATA
-# =========================================================
 if st.session_state.df_master is not None:
 
     if st.button("🗑️ Borrar Excel actual y subir otro"):
