@@ -16,7 +16,7 @@ PLANTILLAS = [
 💰 Monto aprobado: S/ {m}
 📅 Puede elegir plazos desde 12 hasta 72 meses
 ✅ Solo necesita su DNI vigente
-🔄 Tiene opción de amortizar o cancelar anticipadamente desde el 2do mes
+🔄 Tiene opción de amortizar o cancelar anticipadamente desde el 3er mes
 
 🔥 SIN PROCESOS COMPLICADOS – RESPUESTA AGIL
 
@@ -35,7 +35,7 @@ PLANTILLAS = [
 💰 Importe aprobado: S/ {m}
 📅 Plazos flexibles entre 12 y 72 meses
 ✅ Único requisito: DNI vigente
-🔄 Posibilidad de pagos anticipados o cancelación desde el 2do mes
+🔄 Posibilidad de pagos anticipados o cancelación desde el 3er mes
 
 🔥 PROCESO SIMPLE – RESPUESTA RAPIDA
 
@@ -54,7 +54,7 @@ PLANTILLAS = [
 💰 Monto disponible: S/ {m}
 📅 Financiamiento desde 12 hasta 72 meses
 ✅ Solo debe presentar su DNI vigente
-🔄 Puede adelantar cuotas o cancelar el crédito desde el segundo mes
+🔄 Puede adelantar cuotas o cancelar el crédito desde el tercer mes
 
 🔥 SIN TRAMITES ENGORROSOS – RESPUESTA INMEDIATA
 
@@ -73,7 +73,7 @@ PLANTILLAS = [
 💰 Línea aprobada: S/ {m}
 📅 Puede escoger plazos de 12 a 72 meses
 ✅ Requisito principal: DNI vigente
-🔄 Opción de amortizar o cancelar anticipadamente desde el 2do mes
+🔄 Opción de amortizar o cancelar anticipadamente desde el tercer mes
 
 🔥 SIN COMPLICACIONES – ATENCION EFICIENTE
 
@@ -92,7 +92,7 @@ PLANTILLAS = [
 💰 Monto asignado: S/ {m}
 📅 Plazos adaptables entre 12 y 72 meses
 ✅ Solo requiere DNI vigente
-🔄 Puede realizar pagos adelantados o cancelar desde el segundo mes
+🔄 Puede realizar pagos adelantados o cancelar desde el tercer mes
 
 🔥 PROCESO RAPIDO Y SIN COMPLICACIONES
 
