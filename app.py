@@ -11,7 +11,7 @@ PLANTILLAS = [
 
     lambda n, m: f"""¡Hola! {n}
 
-✅ Este mes cuenta con un PRESTAMO DE LIBRE DISPONIBILIDAD con DESEMBOLSO INMEDIIATO
+✅ Este mes cuenta con un PRESTAMO DE LIBRE DISPONIBILIDAD con DESEMBOLSO INMEDIATO
 
 💰 Monto aprobado: S/ {m}
 📅 Puede elegir plazos desde 12 hasta 72 meses
