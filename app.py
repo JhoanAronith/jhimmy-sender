@@ -215,7 +215,7 @@ if st.session_state.df_master is not None:
         mensaje = plantilla(nombre, monto)
 
         url_wa = (
-            f"https://api.whatsapp.com/send"
+            f"whatsapp://send"
             f"?phone=51{tel}"
             f"&text={urllib.parse.quote(mensaje, safe='', encoding='utf-8')}"
         )
